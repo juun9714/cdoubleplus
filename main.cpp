@@ -147,8 +147,120 @@ int main() {
 	char b[] = "Hello"; //쌍따옴표는 널문자를 기본적으로 포함하고 있음
 	cout << a << endl;
 	cout << b << endl;
+
+	string만이 가지고 있는 특장점
+	=> 배열은 다른 배열에 통째로 대입할 수 없는데, string은 가능하다. 
+	=> 문자열의 크기를 미리 지정해주지 않아도 된다.
+	=> 문자열처럼 index로도 접근 가능
+
+	char char1[20];
+	char char2[20] = "jaguar";
+	string str1;
+	string str2 = "panda";
+	// char1 = char2;
+	str1 = str2;
+
+	cout << str1 << endl;
+
+
+	**구조체**
+	사용자의 입맛대로 원하는 데이터형을 만들 수 있음 -> 구조체! 
+	배열 -> 각 요소가 같은 데이터형이어야 함
+	구조체 -> 데이터의 집합이지만 다양한 데이터형이 허용되는 집합임
+
+	// 축구선수
+
 	*/
 
+	struct MyStruct
+	{
+		// 아래 구성 요소들은 member라고 불림
+		string name;
+		string position;
+		int height;
+		int weight;
+	} B;
+	
+	// 위의 네 데이터를 하나의 데이터형으로 관리할 수 있으면 좋을 것임 
+	// 이럴 때 구조체를 사용하면 좋음
+	// 사용자가 정의한 새로운 데이터형을 만듦
+	// 구조체를 선언을 하고, 구조체의 멤버에 대응하는 값을 초기화할 수 있음
+	// 데이터형을 만드는 것이랑 동일하기 때문에! 
+
+	
+	// 구조체의 멤버 연산자 : .
+
+	//cout << A.name << endl;
+	//cout << A.position << endl;
+	//cout << A.height << endl;
+	//cout << A.weight << endl;
+
+
+	//B = { 
+		// 값 안넣어주면 0으로 초기화됨
+	//};
+
+	//cout << B.height << endl;
+
+	// 구조체 역시 배열로 선언할 수 있음
+	/*
+	
+	MyStruct A = {
+		"Son",
+		"Striker",
+		183,
+		77
+	};
+
+	MyStruct C[2] = {
+		{"A","A",1,1},
+		{"B","B",2,2}
+	};
+
+	std::cout << C[1].name << endl;
+	*/
+
+	/*
+	공용체(union)
+	: 서로 다른 데이터형을 한 번에 한 가지만 보관할 수 있는 데이터형
+	: 다른 데이터형의 값을 보관할 때마다, 이전에 보관했던 데이터 값이 소실됨
+	: 여러 데이터형을 사용할 수 있지만, 동시에 사용할 수는 없음 => 메모리를 아낄 수 있음
+
+	열거체(enum)
+	기호 상수를 만드는 것에 대한 또 다른 방법
+	1. spectrum을 새로운 데이터형 이름으로 만듦
+	2. 여러 색을 0에서부터 7까지 정수값을 각각 나타내는 기호 상수로 만듦. 
+	*/
+
+	union MyUnion {
+		int intVal;
+		long longVal;
+		float floatVal;
+	};
+
+	MyUnion test;
+	test.intVal = 3;
+	std::cout << test.intVal << std::endl;
+	test.longVal = 33;
+	std::cout << test.intVal << std::endl;
+	std::cout << test.longVal << std::endl;
+
+	test.floatVal = 3.3;
+	std::cout << test.intVal << std::endl;
+	std::cout << test.longVal << std::endl; 
+	std::cout << test.floatVal << std::endl;
+
+	enum spectrum {red, orange, yellow, green, blue, violet, indigo, ultraviolet};
+	// 열거자들의 값만 대입할 수 있음
+	// 열거자들 끼리의 산술연산은 불가함 ex) red+orange 불가
+	// spectrum 변수에 대입할 때는 연산불가
+	spectrum a = orange;
+	cout << a << endl; //1이 출력
+
+	int b; // int 변수에 대입하면 연산 가능 
+	b = blue;
+	b = blue + 3; //int 형 변수에 그 값을 대입하고자 할 때는 그 열거자의 값이 int로 변환되어 대입된다. 
+	cout << b << endl;
 
 	return 0;
 }
