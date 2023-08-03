@@ -23,6 +23,7 @@ using namespace std: std:: 생략하기 위해서 쓰는 거임
 */
 
 using namespace std;
+#define SIZE 20
 
 int main() {
 
@@ -309,7 +310,6 @@ int main() {
  new
  어떤 데이터 형을 원하는지 new 연산자에 알려주면 얘는 그에 맞는 크기의 메모리 블록을 찾고, 그 블록의 주소를 리턴함
 
-*/
 
 	int* po = new int; //4 bytes 크기의 블록을 할당하고, 그 주소값을 반환함
 	//=> 데이터의 객체를 가리키고 있다. 
@@ -340,6 +340,21 @@ int main() {
 
 	p3 = p3 - 1;
 	delete[] p3;
+*/
+
+
+	
+	char animal[SIZE];
+	char* ps;
+
+	cout << "동물 이름을 입력하세요: ";
+	cin >> animal;
+	ps = new char[strlen(animal) + 1];
+	strcpy(ps, animal);
+
+	cout << "입력하신 동물 이름을 복사하였습니다." << endl;
+	cout << "입력하신 동물 이름은 " << animal << "이고, 주소는 " << (int*)animal << "입니다." << endl;
+	cout << "입력하신 동물 이름을 복사하였습니다." << endl;
 
 	return 0;
 }
