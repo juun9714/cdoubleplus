@@ -1,6 +1,7 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream> //전처리 지시자
 #include <climits>
-
 /*
 C++에서 함수를 사용하고자 한다면, 반드시 그 함수의 원형을 미리 정의하여야 한다.
 ; : 종결자의 역할을 함
@@ -22,7 +23,7 @@ using namespace std: std:: 생략하기 위해서 쓰는 거임
 3. 어디에 저장되는가? (컴파일러가 해줌)
 */
 
-using namespace std;
+
 #define SIZE 20
 
 int main() {
@@ -341,20 +342,21 @@ int main() {
 	p3 = p3 - 1;
 	delete[] p3;
 */
-
-
-	
+	using namespace std;
 	char animal[SIZE];
 	char* ps;
 
-	cout << "동물 이름을 입력하세요: ";
+	cout << "동물 이름을 입력하십시오.\n";
 	cin >> animal;
+
 	ps = new char[strlen(animal) + 1];
 	strcpy(ps, animal);
 
 	cout << "입력하신 동물 이름을 복사하였습니다." << endl;
-	cout << "입력하신 동물 이름은 " << animal << "이고, 주소는 " << (int*)animal << "입니다." << endl;
-	cout << "입력하신 동물 이름을 복사하였습니다." << endl;
+	cout << "입력하신 동물 이름은 " << animal << "이고, 그 주소는 " << (int*)animal << " 입니다." << endl;
+	cout << "복사된 동물 이름은 " << ps << "이고, 그 주소는 " << (int*)ps << " 입니다." << endl;
+
+	delete[] ps;
 
 	return 0;
 }
